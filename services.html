@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Services - Sidian AI</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        /* Reused styles from previous pages */
+        :root {
+            --primary: #6E44FF;
+            --secondary: #B892FF;
+            --accent: #FF6B8B;
+            --dark: #1E1E2F;
+            --light: #F5F5F5;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            background: var(--dark);
+            color: var(--light);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        .fixed-name {
+            position: fixed;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--primary);
+            text-shadow: 0 0 10px var(--primary);
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+
+        .fixed-name:hover {
+            transform: translateX(-50%) scale(1.05);
+            text-shadow: 0 0 20px var(--primary);
+        }
+
+        .navbar {
+            position: fixed;
+            top: 50%;
+            right: 20px;
+            transform: translateY(-50%);
+            z-index: 1000;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            align-items: flex-end;
+        }
+
+        .nav-links {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .nav-links a {
+            color: var(--light);
+            text-decoration: none;
+            font-weight: 500;
+            position: relative;
+            transition: all 0.3s ease;
+            padding: 0.5rem 1rem;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 25px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            text-align: right;
+            width: fit-content;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            width: 0;
+            height: 2px;
+            background: var(--primary);
+            transition: all 0.3s ease;
+            transform: translateX(-50%);
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary);
+            transform: translateX(-10px);
+            background: rgba(110, 68, 255, 0.1);
+        }
+
+        .nav-links a.active {
+            color: var(--primary);
+            background: rgba(110, 68, 255, 0.1);
+        }
+
+        .nav-links a.active::after {
+            width: 100%;
+        }
+
+        .hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            background: radial-gradient(circle, var(--dark), #000);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle, var(--primary), transparent);
+            opacity: 0.2;
+            animation: pulse 6s infinite alternate;
+        }
+
+        .hero-content {
+            z-index: 1;
+        }
+
+        .hero h1 {
+            font-size: 4rem;
+            background: linear-gradient(90deg, var(--primary), var(--accent));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: float 3s infinite alternate;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 600px;
+            margin: 1rem auto;
+            opacity: 0.8;
+        }
+
+        /* Scroll Down Animation */
+        .scroll-down {
+            position: absolute;
+            bottom: 40px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            color: var(--light);
+            opacity: 0.8;
+            animation: bounce 2s infinite;
+        }
+
+        .scroll-down i {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .scroll-down span {
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {
+                transform: translateY(0);
+            }
+            40% {
+                transform: translateY(-10px);
+            }
+            60% {
+                transform: translateY(-5px);
+            }
+        }
+
+        section {
+            padding: 5rem 5%;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            text-align: center;
+            margin-bottom: 3rem;
+            background: linear-gradient(90deg, var(--primary), var(--accent));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .card {
+            background: linear-gradient(145deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.05));
+            padding: 2rem;
+            border-radius: 20px;
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+            margin-bottom: 2rem;
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(110, 68, 255, 0.25),
+                        0 0 40px rgba(110, 68, 255, 0.1);
+        }
+
+        .service-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .service-card {
+            text-align: center;
+            padding: 2rem;
+        }
+
+        .service-icon {
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 1.5rem;
+        }
+
+        .service-card h3 {
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+            color: var(--primary);
+        }
+
+        .service-card p {
+            margin-bottom: 1.5rem;
+            opacity: 0.9;
+        }
+
+        .cta-button {
+            background: var(--primary);
+            color: white;
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 50px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .cta-button:hover {
+            background: var(--accent);
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(110, 68, 255, 0.3);
+        }
+
+        .learn-ai {
+            margin-top: 3rem;
+            text-align: center;
+        }
+
+        .learn-ai h3 {
+            font-size: 2rem;
+            color: var(--primary);
+            margin-bottom: 1.5rem;
+        }
+
+        .learn-ai p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            margin-bottom: 2rem;
+        }
+
+        .service-image {
+            margin-top: 3rem;
+            text-align: center;
+        }
+
+        .service-image img {
+            max-width: 100%;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+    </style>
+</head>
+<body>
+    <div class="fixed-name">Sidian</div>
+
+    <nav class="navbar">
+        <div class="nav-links">
+            <a href="first.html">Home</a>
+            <a href="learning_page.html">Learning</a>
+            <a href="blog.html">Blogs</a>
+            <a href="#services" class="active">Services</a>
+            <a href="team.html">Team</a>
+        </div>
+    </nav>
+
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Transform Your Construction Business</h1>
+            <p>Leverage AI solutions to optimize operations and drive growth</p>
+        </div>
+        <div class="scroll-down">
+            <i class="fas fa-chevron-down"></i>
+            <span>Scroll Down</span>
+        </div>
+    </section>
+
+    <section id="services">
+        <h2 class="section-title">Our Services</h2>
+        
+        <div class="service-grid">
+            <!-- Enterprise Consulting -->
+            <div class="card service-card">
+                <i class="service-icon fas fa-building"></i>
+                <h3>Enterprise Consulting</h3>
+                <p>Comprehensive AI integration strategies for large-scale construction firms</p>
+                <a href="#contact" class="cta-button">Book a Call</a>
+            </div>
+
+            <!-- Use Case ID -->
+            <div class="card service-card">
+                <i class="service-icon fas fa-fingerprint"></i>
+                <h3>Use Case ID</h3>
+                <p>Identify and implement AI solutions tailored to your specific operational needs</p>
+                <a href="#contact" class="cta-button">Book a Call</a>
+            </div>
+
+            <!-- Strategy Development -->
+            <div class="card service-card">
+                <i class="service-icon fas fa-chess-queen"></i>
+                <h3>Strategy Development</h3>
+                <p>Custom AI implementation roadmaps for sustainable growth</p>
+                <a href="mailto:consult@sidion.ai" class="cta-button" style="background: var(--accent)">
+                    Book Meeting ($99/hr)
+                </a>
+            </div>
+        </div>
+
+        <!-- Learn AI Essentials Section -->
+        <div class="learn-ai">
+            <h3>Learn AI Essentials</h3>
+            <p>Book a 1-hour intensive session to understand AI fundamentals and how they can transform your construction business.</p>
+            <a href="#contact" class="cta-button">Schedule Session</a>
+        </div>
+
+        <!-- Image Section -->
+        <div class="service-image">
+            <img src="images/image1.png" alt="AI Essentials">
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2025 Sidian. All rights reserved.</p>
+    </footer>
+
+    <script>
+        // Smooth scroll for navigation
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
+</body>
+</html>

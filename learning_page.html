@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Learning - Sidian AI</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        /* Reuse the same styles from the first page */
+        :root {
+            --primary: #6E44FF;
+            --secondary: #B892FF;
+            --accent: #FF6B8B;
+            --dark: #1E1E2F;
+            --light: #F5F5F5;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            background: var(--dark);
+            color: var(--light);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        .fixed-name {
+            position: fixed;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--primary);
+            text-shadow: 0 0 10px var(--primary);
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+
+        .fixed-name:hover {
+            transform: translateX(-50%) scale(1.05);
+            text-shadow: 0 0 20px var(--primary);
+        }
+
+        .navbar {
+            position: fixed;
+            top: 50%;
+            right: 20px;
+            transform: translateY(-50%);
+            z-index: 1000;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            align-items: flex-end;
+        }
+
+        .nav-links {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .nav-links a {
+            color: var(--light);
+            text-decoration: none;
+            font-weight: 500;
+            position: relative;
+            transition: all 0.3s ease;
+            padding: 0.5rem 1rem;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 25px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            text-align: right;
+            width: fit-content;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            width: 0;
+            height: 2px;
+            background: var(--primary);
+            transition: all 0.3s ease;
+            transform: translateX(-50%);
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary);
+            transform: translateX(-10px);
+            background: rgba(110, 68, 255, 0.1);
+        }
+
+        .nav-links a.active {
+            color: var(--primary);
+            background: rgba(110, 68, 255, 0.1);
+        }
+
+        .nav-links a.active::after {
+            width: 100%;
+        }
+
+        .hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            background: radial-gradient(circle, var(--dark), #000);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle, var(--primary), transparent);
+            opacity: 0.2;
+            animation: pulse 6s infinite alternate;
+        }
+
+        .hero-content {
+            z-index: 1;
+        }
+
+        .hero h1 {
+            font-size: 4rem;
+            background: linear-gradient(90deg, var(--primary), var(--accent));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: float 3s infinite alternate;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 600px;
+            margin: 1rem auto;
+            opacity: 0.8;
+        }
+
+        .cta-button {
+            background: var(--primary);
+            color: white;
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 50px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: 2rem;
+        }
+
+        .cta-button:hover {
+            background: var(--accent);
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(110, 68, 255, 0.3);
+        }
+
+        section {
+            padding: 5rem 5%;
+            position: relative;
+            overflow: hidden;
+        }
+
+        section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle, var(--primary), transparent);
+            opacity: 0.1;
+            z-index: -1;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            text-align: center;
+            margin-bottom: 3rem;
+            background: linear-gradient(90deg, var(--primary), var(--accent));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .card {
+            background: linear-gradient(145deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.05));
+            padding: 2rem;
+            border-radius: 20px;
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 200%;
+            height: 100%;
+            background: linear-gradient(
+                90deg,
+                transparent,
+                rgba(255, 255, 255, 0.1),
+                transparent
+            );
+            transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .card:hover {
+            transform: translateY(-10px) rotateX(2deg) rotateY(2deg);
+            box-shadow: 0 15px 30px rgba(110, 68, 255, 0.25),
+                        0 0 40px rgba(110, 68, 255, 0.1);
+        }
+
+        .card:hover::before {
+            left: 100%;
+        }
+
+        /* Blog Cards */
+        .blog-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .blog-card {
+            background: linear-gradient(145deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.05));
+            padding: 2rem;
+            border-radius: 20px;
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .blog-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 200%;
+            height: 100%;
+            background: linear-gradient(
+                90deg,
+                transparent,
+                rgba(255, 255, 255, 0.1),
+                transparent
+            );
+            transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .blog-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(110, 68, 255, 0.25),
+                        0 0 40px rgba(110, 68, 255, 0.1);
+        }
+
+        .blog-card:hover::before {
+            left: 100%;
+        }
+
+        .blog-card h3 {
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+            color: var(--primary);
+        }
+
+        .blog-card p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+            line-height: 1.8;
+        }
+
+        .blog-card a {
+            color: var(--accent);
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .blog-card a:hover {
+            color: var(--primary);
+        }
+    </style>
+</head>
+<body>
+    <div class="fixed-name">Sidian</div>
+
+    <nav class="navbar">
+        <div class="nav-links">
+            <a href="first.html">Home</a>
+            <a href="learning_page.html" class="active">Learning</a>
+            <a href="blog.html">Blogs</a>
+            <a href="services.html">Services</a>
+            <a href="team.html">Team</a>
+        </div>
+    </nav>
+
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Understanding AI in Construction</h1>
+            <p>Explore how AI is revolutionizing the construction industry and learn about its transformative potential.</p>
+        </div>
+    </section>
+
+    <section id="metaphor">
+        <h2 class="section-title">AI as a Horizontally Enabling Layer</h2>
+        <div class="card">
+            <p>
+                In the 19th century, electricity was the world’s greatest revolution, acting as a horizontally enabling layer. Like a universal translator, it bridged gaps across industries and spurred innovation. It enhanced every aspect of life and fueled growth across sectors, including construction and engineering.
+            </p>
+            <p>
+                In the 20th century, the internet took on the role of a horizontally enabling layer, transforming communication, commerce, and virtually every industry. It redefined how we connect, collaborate, and create, driving innovation at an unprecedented scale.
+            </p>
+            <p>
+                Today, Artificial Intelligence stands as the horizontally enabling layer, revolutionizing industries worldwide. In particular, AI has found remarkable applications in the construction industry, driving advancements in efficiency, safety, and project management. For more insights on this transformation, explore the latest blogs to learn how AI is shaping the future of construction.
+            </p>
+        </div>
+    </section>
+
+    <section id="knowledge-base">
+        <h2 class="section-title">Knowledge Base</h2>
+        <div class="blog-grid">
+            <div class="blog-card">
+                <h3>AI in Construction: An Overview</h3>
+                <p>Learn how AI is transforming the construction industry, from project planning to execution.</p>
+                <!-- <a href="#">Read More</a> -->
+            </div>
+            <div class="blog-card">
+                <h3>AI-Powered Safety Solutions</h3>
+                <p>Discover how AI is improving safety standards on construction sites.</p>
+                <!-- <a href="#">Read More</a> -->
+            </div>
+            <div class="blog-card">
+                <h3>AI for Project Management</h3>
+                <p>Explore how AI tools are streamlining project management in construction.</p>
+                <!-- <a href="#">Read More</a> -->
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2025 Sidian. All rights reserved.</p>
+    </footer>
+
+    <script>
+        // Smooth scroll for navigation
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
+</body>
+</html>
