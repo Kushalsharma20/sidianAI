@@ -314,6 +314,80 @@
                 font-size: 1.5rem;
             }
         }
+        footer {
+            background: #ffffff;
+            padding: 4rem 5% 2rem;
+            color: var(--light);
+            border-top: 1px solid rgba(0, 0, 0, 0.1);
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 3rem;
+            max-width: 1200px;
+            margin: 0 auto 2rem;
+        }
+
+        .footer-section h4 {
+            color: var(--primary);
+            margin-bottom: 1.5rem;
+            font-size: 1.25rem;
+        }
+
+        .contact-info p {
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+        }
+
+        .contact-info i {
+            color: var(--primary);
+            min-width: 1.5rem;
+        }
+
+        .email-subscription {
+            display: flex;
+            gap: 1rem;
+            max-width: 400px;
+        }
+
+        .email-subscription input {
+            flex: 1;
+            padding: 0.8rem;
+            border: 1px solid rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            font-size: 1rem;
+        }
+
+        .email-subscription button {
+            background: var(--primary);
+            color: white;
+            padding: 0.8rem 1.5rem;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .email-subscription button:hover {
+            background: var(--accent);
+            transform: translateY(-2px);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(0, 0, 0, 0.1);
+            margin-top: 2rem;
+        }
+
+        @media (max-width: 768px) {
+            .email-subscription {
+                flex-direction: column;
+            }
+        }
     </style>
 </head>
 <body>
@@ -321,8 +395,8 @@
 
     <nav class="navbar">
         <div class="nav-links">
-            <a href="index.html">Home</a>
-            <a href="learning.html">Learning</a>
+            <a href="index.html">Bid Process</a>
+            <a href="learning_page.html">Learning</a>
             <a href="services.html">Services</a>
             <a href="team.html" class="active">Team</a>
         </div>
@@ -415,9 +489,30 @@
         </div> -->
     </section>
 
-    <footer style="text-align: center; padding: 2rem; background: #ffffff;">
-        <p>&copy; 2025 Sidian. All rights reserved.</p>
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h4>Get in Touch</h4>
+                <div class="contact-info">
+                    <p><i class="fas fa-map-marker-alt"></i> Waterloo, Ontario</p>
+                    <p><i class="fas fa-phone"></i> 519-774-8688</p>
+                    <p><i class="fas fa-mobile-alt"></i> 226-339-9038</p>
+                    <p><i class="fas fa-envelope"></i> <a href="">info@sidian.com</a></p>
+                </div>
+            </div>
+            <!-- <div class="footer-section">
+                <h4>Stay Updated</h4>
+                <form class="email-subscription">
+                    <input type="email" placeholder="Enter your email for updates">
+                    <button type="submit">Subscribe</button>
+                </form>
+            </div> -->
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 Sidian. All rights reserved.</p>
+        </div>
     </footer>
+
 
     <script>
         const fixedName = document.querySelector('.fixed-name');
