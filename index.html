@@ -24,7 +24,7 @@
         body {
             background: var(--dark);
             color: var(--light);
-            line-height: 1.6;
+            line-height: 1.7;
             overflow-x: hidden;
         }
 
@@ -33,14 +33,14 @@
             top: 20px;
             left: 50%;
             transform: translateX(-50%);
-            font-size: 2.5rem;
+            font-size: 3rem;
             font-weight: 700;
             color: var(--primary);
             text-shadow: 0 0 10px rgba(110, 68, 255, 0.2);
             z-index: 2000;
             transition: all 0.3s ease;
             background: rgba(255, 255, 255, 0.95);
-            padding: 0.8rem 2.5rem;
+            padding: 1rem 3rem;
             border-radius: 50px;
             border: 2px solid rgba(110, 68, 255, 0.15);
             box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
@@ -62,14 +62,14 @@
             z-index: 1000;
             display: flex;
             flex-direction: column;
-            gap: 1rem;
+            gap: 1.2rem;
             align-items: flex-end;
         }
 
         .nav-links {
             display: flex;
             flex-direction: column;
-            gap: 1rem;
+            gap: 1.2rem;
         }
 
         .nav-links a {
@@ -78,12 +78,13 @@
             font-weight: 500;
             position: relative;
             transition: all 0.3s ease;
-            padding: 0.5rem 1rem;
+            padding: 0.7rem 1.3rem;
             background: rgba(255, 255, 255, 0.9);
             border-radius: 25px;
             border: 1px solid rgba(0, 0, 0, 0.1);
             text-align: right;
             width: fit-content;
+            font-size: 1.1rem;
         }
 
         .nav-links a::after {
@@ -141,18 +142,20 @@
         }
 
         .hero h1 {
-            font-size: 4.5rem;
+            font-size: 5.5rem;
             background: linear-gradient(90deg, var(--primary), var(--accent));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             animation: float 3s infinite alternate;
+            margin-bottom: 1.5rem;
         }
 
         .hero p {
-            font-size: 1.2rem;
+            font-size: 1.5rem;
             max-width: 600px;
-            margin: 1rem auto;
+            margin: 1.5rem auto;
             opacity: 0.8;
+            line-height: 1.7;
         }
 
         .scroll-down {
@@ -166,25 +169,6 @@
             z-index: 1000;
         }
 
-        .cta-button {
-            background: var(--primary);
-            color: white;
-            padding: 1rem 2rem;
-            border: none;
-            border-radius: 50px;
-            font-size: 1rem;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            margin-top: 2rem;
-        }
-
-        .cta-button:hover {
-            background: var(--accent);
-            transform: translateY(-5px);
-            box-shadow: 0 10px 20px rgba(110, 68, 255, 0.3);
-        }
-
         section {
             padding: 5rem 5%;
             position: relative;
@@ -192,12 +176,13 @@
         }
 
         .section-title {
-            font-size: 3rem;
+            font-size: 4rem;
             text-align: center;
-            margin-bottom: 3rem;
+            margin-bottom: 2.5rem;
             background: linear-gradient(90deg, var(--primary), var(--accent));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
+            padding: 0 1rem;
         }
 
         .card {
@@ -208,7 +193,7 @@
             transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
             position: relative;
             overflow: hidden;
-            min-height: 300px;
+            min-height: 320px;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
         }
 
@@ -256,20 +241,21 @@
         }
 
         .process-card h3 {
-            font-size: 2rem;
+            font-size: 2.5rem;
             color: var(--primary);
-            margin-bottom: 1rem;
+            margin-bottom: 1.5rem;
         }
 
         .process-card ul {
             list-style: none;
-            padding-left: 1rem;
+            padding-left: 1.2rem;
         }
 
         .process-card li {
             position: relative;
-            padding-left: 1.5rem;
-            margin-bottom: 1rem;
+            padding-left: 1.8rem;
+            margin-bottom: 1.2rem;
+            font-size: 1.2rem;
         }
 
         .process-card li::before {
@@ -300,7 +286,7 @@
         }
 
         .mission-icon {
-            font-size: 2.5rem;
+            font-size: 3rem;
             color: var(--primary);
             margin-bottom: 1rem;
             transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
@@ -309,6 +295,16 @@
         .mission-card:hover .mission-icon {
             color: var(--accent);
             transform: scale(1.2) rotate(-5deg);
+        }
+
+        .mission-card h3 {
+            font-size: 2.2rem;
+            margin-bottom: 1rem;
+        }
+
+        .mission-card p {
+            font-size: 1.1rem;
+            line-height: 1.7;
         }
 
         .pillars-grid {
@@ -331,7 +327,7 @@
         }
 
         .pillar-icon {
-            font-size: 3rem;
+            font-size: 3.5rem;
             color: var(--primary);
             margin-bottom: 1.5rem;
             transition: all 0.3s ease;
@@ -340,6 +336,11 @@
         .pillar-card:hover .pillar-icon {
             transform: scale(1.2) rotate(360deg);
             color: var(--accent);
+        }
+
+        .pillar-card h3 {
+            font-size: 2.2rem;
+            margin: 1rem 0;
         }
 
         .timeline {
@@ -382,11 +383,11 @@
         }
 
         .timeline-year {
-            font-size: 1.5rem;
+            font-size: 1.8rem;
             font-weight: 700;
             color: var(--primary);
             background: var(--dark);
-            padding: 10px 20px;
+            padding: 12px 20px;
             border-radius: 25px;
             border: 2px solid var(--primary);
             margin: 0 20px;
@@ -402,19 +403,19 @@
         }
 
         .timeline-content h3 {
-            font-size: 1.8rem;
+            font-size: 2rem;
             margin-bottom: 1.5rem;
         }
 
         .timeline-content ul {
-            padding-left: 1.5rem;
+            padding-left: 1.8rem;
         }
 
         .timeline-content li {
-            font-size: 1.1rem;
-            margin-bottom: 1rem;
+            font-size: 1.2rem;
+            margin-bottom: 1.2rem;
             position: relative;
-            padding-left: 1.5rem;
+            padding-left: 1.8rem;
         }
 
         .timeline-content li::before {
@@ -442,15 +443,18 @@
 
         @media (max-width: 768px) {
             .hero h1 {
-                font-size: 3rem;
+                font-size: 4rem;
             }
             .fixed-name {
-                font-size: 2rem;
-                padding: 0.6rem 2rem;
+                font-size: 2.5rem;
+                padding: 0.8rem 2.5rem;
             }
             .card {
                 padding: 2rem;
-                min-height: auto;
+            }
+            .section-title {
+                font-size: 3.5rem;
+                margin-bottom: 2rem;
             }
             .timeline-item {
                 flex-direction: column;
@@ -459,8 +463,10 @@
             }
             .timeline-year {
                 margin-bottom: 1.5rem;
+                font-size: 1.6rem;
             }
         }
+
         footer {
             background: #ffffff;
             padding: 4rem 5% 2rem;
@@ -480,48 +486,21 @@
         .footer-section h4 {
             color: var(--primary);
             margin-bottom: 1.5rem;
-            font-size: 1.25rem;
+            font-size: 1.5rem;
         }
 
         .contact-info p {
-            margin-bottom: 1rem;
+            margin-bottom: 1.2rem;
             display: flex;
             align-items: center;
             gap: 0.8rem;
+            font-size: 1.1rem;
         }
 
         .contact-info i {
             color: var(--primary);
-            min-width: 1.5rem;
-        }
-
-        .email-subscription {
-            display: flex;
-            gap: 1rem;
-            max-width: 400px;
-        }
-
-        .email-subscription input {
-            flex: 1;
-            padding: 0.8rem;
-            border: 1px solid rgba(0, 0, 0, 0.1);
-            border-radius: 8px;
-            font-size: 1rem;
-        }
-
-        .email-subscription button {
-            background: var(--primary);
-            color: white;
-            padding: 0.8rem 1.5rem;
-            border: none;
-            border-radius: 8px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-
-        .email-subscription button:hover {
-            background: var(--accent);
-            transform: translateY(-2px);
+            min-width: 2rem;
+            font-size: 1.2rem;
         }
 
         .footer-bottom {
@@ -529,12 +508,7 @@
             padding-top: 2rem;
             border-top: 1px solid rgba(0, 0, 0, 0.1);
             margin-top: 2rem;
-        }
-
-        @media (max-width: 768px) {
-            .email-subscription {
-                flex-direction: column;
-            }
+            font-size: 1.1rem;
         }
     </style>
 </head>
@@ -553,14 +527,14 @@
     <section class="hero">
         <div class="hero-content">
             <h1>Revolutionizing Construction with AI</h1>
-            <p>Transform the construction industry for small-medium businesses by leveraging AI-driven solutions.</p>
-            <!-- <button class="cta-button">Explore Solutions</button> -->
+            <p>Transform the construction industry for small-medium businesses by leveraging AI-driven solutions</p>
             <div class="scroll-down" onclick="scrollToNextSection()">
                 <i class="fas fa-chevron-down fa-2x"></i>
             </div>
         </div>
     </section>
 
+    <!-- Rest of the sections remain exactly the same as previous version -->
     <section id="bid-process">
         <h2 class="section-title">Sidian Bid Process</h2>
         <div class="card">
@@ -578,7 +552,7 @@
                     <h3>Speed</h3>
                     <ul>
                         <li>Collaborate with you on key project deliverables</li>
-                        <li>Use Sidian to find the right AI provider for you </li>
+                        <li>Use Sidian to find the right AI provider for you</li>
                     </ul>
                 </div>
                 <div class="process-card">
@@ -591,7 +565,6 @@
                     </ul>
                 </div>
             </div>
-         
         </div>
     </section>
 
@@ -658,9 +631,7 @@
                     <ul>
                         <li>Hand drafting to AutoCad</li>
                         <li>Physical prototypes to 3D modeling</li>
-                        <li>Data analytics, AR, and cloud computing for monitoring, planning, and management  
-
-
+                        <li>Data analytics, AR, and cloud computing for monitoring, planning, and management</li>
                     </ul>
                 </div>
             </div>
@@ -689,13 +660,6 @@
                     <p><i class="fas fa-envelope"></i> <a href="mailto:sidianinfo@gmail.com">sidianinfo@gmail.com</a></p>
                 </div>
             </div>
-            <!-- <div class="footer-section">
-                <h4>Stay Updated</h4>
-                <form class="email-subscription">
-                    <input type="email" placeholder="Enter your email for updates">
-                    <button type="submit">Subscribe</button>
-                </form>
-            </div> -->
         </div>
         <div class="footer-bottom">
             <p>&copy; 2025 Sidian. All rights reserved.</p>
@@ -703,6 +667,7 @@
     </footer>
 
     <script>
+        // JavaScript remains unchanged from previous version
         const fixedName = document.querySelector('.fixed-name');
         const heroSection = document.querySelector('.hero');
 
